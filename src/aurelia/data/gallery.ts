@@ -1,0 +1,88 @@
+import type { GalleryImageItem } from '../types/hospitality';
+
+export const AURELIA_GALLERY: GalleryImageItem[] = [
+  {
+    id: 'gal-cloud-peak-exterior',
+    title: 'Himalayan Ridge Heated Pool at Dawn',
+    category: 'Wellness & Pools',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Cloud Peak',
+  },
+  {
+    id: 'gal-ocean-villa-plunge',
+    title: 'Private Sukabumi Stone Pool Overlooking Beach',
+    category: 'Wellness & Pools',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Ocean Palm',
+  },
+  {
+    id: 'gal-suite-mountain-fire',
+    title: 'Stone Hearth Living Suite at Twilight',
+    category: 'Rooms & Suites',
+    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Cloud Peak',
+  },
+  {
+    id: 'gal-rainforest-canopy',
+    title: 'Elevated Teakwood Treehouse Pavilion',
+    category: 'Resorts',
+    image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Rainforest Sanctuary',
+  },
+  {
+    id: 'gal-haveli-fountain',
+    title: 'Restored Rajput Marble Lotus Courtyard',
+    category: 'Resorts',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Haveli Palace',
+  },
+  {
+    id: 'gal-ocean-dining',
+    title: 'Candlelit Sandbar Twilight Tasting Table',
+    category: 'Dining',
+    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Ocean Palm',
+  },
+  {
+    id: 'gal-lake-pichola-suite',
+    title: 'Waterfront Veranda Overlooking Udaipur Palaces',
+    category: 'Rooms & Suites',
+    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Lake Pavilion',
+  },
+  {
+    id: 'gal-tea-valley-hills',
+    title: 'Morning Fog Across the Planters Bungalow Grounds',
+    category: 'Resorts',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Tea Valley Estate',
+  },
+  {
+    id: 'gal-ayurvedic-massage',
+    title: 'Four-Hand Warm Herbal Oil Abhyanga Ritual',
+    category: 'Wellness & Pools',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Rainforest Sanctuary',
+  },
+  {
+    id: 'gal-royal-barge-twilight',
+    title: 'Ceremonial Teak Boat Cruise on Lake Pichola',
+    category: 'Experiences',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Lake Pavilion',
+  },
+  {
+    id: 'gal-tea-plucking',
+    title: 'Single-Origin Tea Plucking Workshop at Sunrise',
+    category: 'Experiences',
+    image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Tea Valley Estate',
+  },
+  {
+    id: 'gal-himalayan-dining',
+    title: 'Locally Foraged Himalayan Hearth Dining Experience',
+    category: 'Dining',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=80',
+    stayName: 'Aurelia Cloud Peak',
+  },
+];
