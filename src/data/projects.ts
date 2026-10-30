@@ -9,7 +9,7 @@ export const projects: Project[] = [
     description: 'A multi-page automotive dealership platform featuring interactive vehicle filtering, technical comparisons, saved garage, and full vehicle specifications.',
     status: 'Ready to Explore',
     demoUrl: '/velocity',
-    previewImage: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80',
+    previewImage: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
     isResponsive: true,
   },
   {
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description: 'A premium, modern physiotherapy & physical rehabilitation platform with personalized treatment filtering, structured recovery programs, practitioner directory, clinic gallery, and consultation booking.',
     status: 'Ready to Explore',
     demoUrl: '/rehabora',
-    previewImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+    previewImage: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
     isResponsive: true,
   },
   {
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     description: 'A welcoming, modern veterinary website focused on pet wellness, Fear-Free low-stress handling, doctor directory, wellness library, and appointment requests in warm cream, terracotta, and sage green.',
     status: 'Ready to Explore',
     demoUrl: '/paw-whisker',
-    previewImage: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=1200&q=80',
+    previewImage: 'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=1200&q=80',
     isResponsive: true,
   },
   {
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     description: 'A luxury hospitality brand website featuring destination discovery across 4 geographic regions, 6 curated sanctuaries, suite details with price calculations, 6-step demo booking request journey, and immersive photography in deep emerald and champagne.',
     status: 'Ready to Explore',
     demoUrl: '/aurelia',
-    previewImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+    previewImage: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
     isResponsive: true,
   },
   {
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     description: 'A contemporary editorial e-commerce experience featuring 26 design objects, multi-filter catalog, dynamic variant selection, persistent cart drawer, simulated checkout, and discount verification in cobalt blue and coral orange.',
     status: 'Ready to Explore',
     demoUrl: '/object',
-    previewImage: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80',
+    previewImage: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1200&q=80',
     isResponsive: true,
   }
 ];

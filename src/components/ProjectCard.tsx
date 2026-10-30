@@ -13,21 +13,24 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
     <>
       {/* Image / Placeholder Area */}
       <div className="relative h-48 w-full bg-gray-50 overflow-hidden border-b border-border/40">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
-        <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-gradient-to-tr from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
         {project.previewImage ? (
-          <img 
-            src={project.previewImage} 
-            alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          <>
+            <img 
+              src={project.previewImage} 
+              alt={project.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            {/* Subtle elegant hover sheen */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </>
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center text-secondary relative z-10">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]"></div>
             <motion.div 
               whileHover={{ rotate: [0, -10, 10, -5, 5, 0] }}
               transition={{ duration: 0.5 }}
-              className="bg-white p-3 rounded-2xl shadow-sm border border-border/50 group-hover:shadow-md transition-all group-hover:-translate-y-1"
+              className="bg-white p-3 rounded-2xl shadow-sm border border-border/50 group-hover:shadow-md transition-all group-hover:-translate-y-1 relative z-10"
             >
               <LayoutTemplate className="w-6 h-6 text-primary/30 group-hover:text-primary transition-colors" />
             </motion.div>
