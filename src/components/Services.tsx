@@ -30,7 +30,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative min-h-[600px] h-screen flex flex-col justify-center pt-24 pb-24 bg-[#EAEAEA] overflow-hidden">
+    <section id="services" className="relative py-16 sm:py-20 lg:py-28 bg-[#EAEAEA] overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -39,7 +39,7 @@ export function Services() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring", bounce: 0.2 }}
           className="mb-10 max-w-2xl relative"
         >
@@ -68,9 +68,9 @@ export function Services() {
               <motion.a 
                 href="#contact"
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: service.delay, type: "spring", bounce: 0.4 }}
                 className="group relative p-8 rounded-3xl bg-white border border-border overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:border-border/80 transition-all duration-500 hover:-translate-y-2 flex flex-col h-full cursor-pointer"
               >

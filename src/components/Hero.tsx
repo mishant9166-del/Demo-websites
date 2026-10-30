@@ -18,7 +18,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex flex-col justify-center pt-24 pb-4 overflow-hidden">
+    <section className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-center pt-24 pb-12 lg:pb-6 overflow-hidden">
       
       {/* Animated Background Mesh/Glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
