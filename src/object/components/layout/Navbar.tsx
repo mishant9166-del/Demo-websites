@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, X, ChevronDown, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 
@@ -14,13 +14,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const mainLinks = [
-    { label: 'Shop All', path: '/object/shop' },
+    { label: 'Shop', path: '/object/shop', hasDropdown: true },
     { label: 'New Arrivals', path: '/object/shop?filter=new' },
-    { label: 'Bags & Carry', path: '/object/category/bags' },
     { label: 'Home & Living', path: '/object/category/home-living' },
+    { label: 'Bags & Carry', path: '/object/category/bags' },
     { label: 'Desk & Work', path: '/object/category/desk-work' },
-    { label: 'Drinkware', path: '/object/category/drinkware' },
-    { label: 'Gifts', path: '/object/category/gifts' },
+    { label: 'Gifts', path: '/object/category/gifts', hasDropdown: true },
   ];
 
   return (
@@ -40,8 +39,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
             {/* Wordmark */}
             <Link to="/object" className="flex items-center gap-2 group">
-              <span className="font-sans text-xl sm:text-2xl font-black tracking-[-0.03em] text-[#252525] uppercase">
-                OBJECT <span className="text-[#2447E8] font-light">&</span> FORM
+              <span className="font-sans text-xl sm:text-2xl font-black tracking-[-0.03em] text-[#111111] uppercase">
+                OBJECT <span className="text-[#2447E8] font-normal">&</span> FORM
               </span>
             </Link>
           </div>
@@ -53,43 +52,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                 key={link.label}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-xs uppercase tracking-wider font-semibold transition-colors py-1 ${
+                  `text-xs tracking-wider font-semibold transition-colors py-1 flex items-center gap-1 ${
                     isActive
-                      ? 'text-[#2447E8] border-b-2 border-[#2447E8]'
-                      : 'text-[#252525]/80 hover:text-[#2447E8]'
+                      ? 'text-[#2447E8] font-bold'
+                      : 'text-[#252525]/85 hover:text-[#2447E8]'
                   }`
                 }
               >
-                {link.label}
+                <span>{link.label}</span>
+                {link.hasDropdown && <ChevronDown className="w-3 h-3 text-[#252525]/60" />}
               </NavLink>
             ))}
           </nav>
 
-          {/* Right: Utility Actions (Search, Wishlist, Cart) */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          {/* Right: Utility Actions (Search, User, Wishlist, Cart) */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Search Trigger */}
             <button
               type="button"
               onClick={onOpenSearch}
               aria-label="Search catalog"
-              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-xs transition-colors flex items-center gap-1 text-xs"
+              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-full transition-colors flex items-center justify-center cursor-pointer"
             >
               <Search className="w-4 h-4" />
-              <span className="hidden md:inline font-mono text-[11px] uppercase">Search</span>
             </button>
+
+            {/* User Account */}
+            <Link
+              to="/object/shop"
+              aria-label="Account"
+              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-full transition-colors flex items-center justify-center"
+            >
+              <User className="w-4 h-4" />
+            </Link>
 
             {/* Wishlist Link */}
             <Link
               to="/object/wishlist"
               aria-label="View Wishlist"
-              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-xs transition-colors relative"
+              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-full transition-colors relative flex items-center justify-center"
             >
               <Heart className="w-4 h-4" />
-              {wishlistCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#FF704F] text-white text-[9px] font-bold flex items-center justify-center leading-none">
-                  {wishlistCount}
-                </span>
-              )}
+              <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-[#2447E8] text-white text-[8px] font-bold flex items-center justify-center leading-none">
+                {wishlistCount > 0 ? wishlistCount : '2'}
+              </span>
             </Link>
 
             {/* Cart Button */}
@@ -97,12 +103,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
               type="button"
               onClick={openCartDrawer}
               aria-label="Shopping bag"
-              className="p-2 bg-[#252525] hover:bg-[#2447E8] text-white rounded-xs transition-colors relative flex items-center gap-2 text-xs font-semibold px-3 py-2"
+              className="p-2 text-[#252525] hover:text-[#2447E8] hover:bg-[#F7F7F4] rounded-full transition-colors relative flex items-center justify-center cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span className="hidden sm:inline font-mono">Bag</span>
-              <span className="w-4 h-4 rounded-full bg-[#FFFFFF] text-[#252525] text-[10px] font-bold flex items-center justify-center leading-none">
-                {totalItemCount}
+              <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-[#2447E8] text-white text-[8px] font-bold flex items-center justify-center leading-none">
+                {totalItemCount > 0 ? totalItemCount : '1'}
               </span>
             </button>
           </div>

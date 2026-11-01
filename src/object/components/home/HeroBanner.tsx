@@ -1,295 +1,309 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Sparkles, Plus, MoveRight, ShoppingBag, Eye, Layers } from 'lucide-react';
-
-interface HotspotItem {
-  id: string;
-  name: string;
-  category: string;
-  price: string;
-  slug: string;
-  top: string;
-  left: string;
-  tagline: string;
-  image: string;
-  chipLabel: string;
-}
-
-const HOTSPOTS: HotspotItem[] = [
-  {
-    id: 'lamp',
-    name: 'Pebble Ceramic Ambient Lamp',
-    category: 'Home & Living',
-    price: '₹3,899',
-    slug: 'pebble-ceramic-ambient-lamp',
-    top: '36%',
-    left: '42%',
-    tagline: 'Hand-thrown stoneware • 2700K Warm Glow',
-    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=400&q=80',
-    chipLabel: '01 / Ambient Lamp',
-  },
-  {
-    id: 'tray',
-    name: 'Orbit Precision Desk Organizer',
-    category: 'Desk & Work',
-    price: '₹2,699',
-    slug: 'orbit-precision-desk-organizer',
-    top: '72%',
-    left: '68%',
-    tagline: 'Anodized 6061 Aluminum • Magnetic Dock',
-    image: 'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?auto=format&fit=crop&w=400&q=80',
-    chipLabel: '02 / Desk Organizer',
-  },
-  {
-    id: 'tote',
-    name: 'Arc Everyday Waxed Tote',
-    category: 'Bags & Carry',
-    price: '₹1,899',
-    slug: 'arc-everyday-tote',
-    top: '76%',
-    left: '24%',
-    tagline: '18oz Beeswax Duck Canvas • Solid Copper Rivets',
-    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80',
-    chipLabel: '03 / Waxed Tote',
-  },
-];
+import {
+  ArrowRight,
+  Play,
+  ChevronUp,
+  ChevronDown,
+  Truck,
+  ShieldCheck,
+  RotateCcw,
+  Headphones,
+  X
+} from 'lucide-react';
 
 export const HeroBanner: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>('lamp');
-  const activeItem = HOTSPOTS.find((h) => h.id === activeId) || HOTSPOTS[0];
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const totalSlides = 4;
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev >= totalSlides ? 1 : prev + 1));
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev <= 1 ? totalSlides : prev - 1));
+  };
 
   return (
-    <section className="relative bg-[#111215] text-white overflow-hidden selection:bg-[#2447E8] selection:text-white">
-      
-      {/* 1. Kinetic Ticker Ribbon */}
-      <div className="bg-[#181A1F] border-b border-white/10 py-2.5 px-4 overflow-hidden text-[11px] font-mono tracking-widest uppercase text-[#9EA3AE]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#2447E8] animate-pulse" />
-            <span className="text-white font-bold tracking-wider">OBJECT & FORM</span>
-            <span className="text-white/30 hidden sm:inline">•</span>
-            <span className="hidden sm:inline">2026 STUDIO LOOKBOOK</span>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <span className="hidden md:inline text-white/60">Limited Batch Run: 26 Objects</span>
-            <span className="hidden md:inline text-white/30">•</span>
-            <span className="text-[#C8D1E6]">Pan-India Express Transit</span>
-            <Link
-              to="/object/shop"
-              className="text-[#2447E8] hover:text-[#5B7BFF] font-bold inline-flex items-center gap-1 transition-colors group"
-            >
-              <span>Catalog</span>
-              <MoveRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Main Hero Stage */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
+    <>
+      <section className="relative bg-[#FFFFFF] border-b border-[#EAEAE6] overflow-hidden selection:bg-[#2447E8] selection:text-white">
         
-        {/* Asymmetric Modern Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* Main Hero Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-14 pb-12 sm:pb-16 relative">
           
-          {/* Left Hero Card: Typographic Statement & Quick Actions (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#181A20] border border-white/10 shadow-2xl relative overflow-hidden group">
-            {/* Ambient lighting inside card */}
-            <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#2447E8]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
             
-            <div className="relative z-10">
+            {/* 1. Left Column: Editorial Content */}
+            <div className="lg:col-span-5 z-20 flex flex-col justify-center">
+              
               {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-widest text-[#2447E8] font-bold mb-6">
-                <Sparkles className="w-3 h-3 text-[#2447E8]" />
-                <span>Next-Gen Design Studio</span>
-              </div>
-
-              {/* Big Punchy Modern Headline */}
-              <h1 className="text-3xl sm:text-4xl xl:text-5xl font-black tracking-[-0.04em] leading-[1.04] text-white mb-4">
-                Form. <br />
-                Purpose. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2447E8] via-[#6584FF] to-white">
-                  Permanence.
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base text-[#9EA3AE] leading-relaxed max-w-md font-normal mb-8">
-                Tactile ceramics, architectural illumination, and precision workstation instruments crafted for living without clutter.
-              </p>
-            </div>
-
-            <div className="relative z-10 space-y-6">
-              {/* Dual Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="mb-6">
                 <Link
                   to="/object/shop"
-                  className="px-6 py-3.5 bg-[#2447E8] hover:bg-[#1D3BC5] text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-[#2447E8]/25 flex items-center justify-center gap-2 group active:scale-95"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border border-[#E2E4E9] shadow-2xs hover:border-[#2447E8] text-xs font-medium text-[#111111] transition-all group"
                 >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>Explore 26 Objects</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <span className="w-2 h-2 rounded-full bg-[#2447E8]" />
+                  <span>Thoughtfully Designed</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#111111] group-hover:translate-x-0.5 transition-transform" />
                 </Link>
+              </div>
 
+              {/* Main Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[58px] xl:text-[66px] font-black tracking-[-0.035em] text-[#111111] leading-[1.05] mb-5">
+                Objects of <br />
+                Utility. <br />
+                <span className="text-[#2447E8]">Thoughtfully Formed.</span>
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-sm sm:text-base text-[#666666] leading-relaxed max-w-md font-normal mb-8">
+                A curated collection of timeless design, modern utility and everyday essentials — for a better you.
+              </p>
+
+              {/* Action Buttons Row */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-10">
                 <Link
-                  to="/object/shop?filter=new"
-                  className="px-6 py-3.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 text-xs font-bold uppercase tracking-widest rounded-xl transition-all text-center active:scale-95"
+                  to="/object/shop"
+                  className="px-7 py-3.5 bg-[#2447E8] hover:bg-[#1D3BC5] text-white text-sm font-semibold rounded-full shadow-lg shadow-[#2447E8]/25 flex items-center gap-2 group transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  New Arrivals (6)
+                  <span>Explore Collection</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </div>
 
-              {/* Category Quick Chips */}
-              <div className="pt-5 border-t border-white/10 flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#686E7D] block w-full mb-1">
-                  Quick Filter by Domain:
-                </span>
-                {[
-                  { label: 'Carry', slug: 'bags' },
-                  { label: 'Living', slug: 'home-living' },
-                  { label: 'Desk', slug: 'desk-work' },
-                  { label: 'Drinkware', slug: 'drinkware' },
-                ].map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    to={`/object/category/${cat.slug}`}
-                    className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/15 border border-white/5 text-[11px] font-mono text-[#C8D1E6] hover:text-white transition-colors"
-                  >
-                    #{cat.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Hero Card: Interactive Hotspot Lookbook Stage (7 Cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-between p-4 sm:p-6 rounded-3xl bg-[#181A20] border border-white/10 shadow-2xl relative overflow-hidden">
-            
-            {/* Top Interactive Selector Chips */}
-            <div className="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
-              <div className="flex items-center gap-1.5 text-xs text-[#9EA3AE]">
-                <Layers className="w-4 h-4 text-[#2447E8]" />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-white font-bold">
-                  Interactive Room Hotspots
-                </span>
-              </div>
-              <span className="text-[10px] font-mono text-[#686E7D]">Click pins to inspect</span>
-            </div>
-
-            {/* Interactive Image Canvas with Pulsing Radar Pins */}
-            <div className="relative h-[280px] sm:h-[340px] lg:h-[380px] w-full rounded-2xl overflow-hidden bg-black border border-white/10">
-              <img
-                src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1600&q=85"
-                alt="OBJECT & FORM Architectural Living Space and Design Objects"
-                className="w-full h-full object-cover filter brightness-[0.85] contrast-[1.05]"
-              />
-
-              {/* Gradient Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
-
-              {/* Hotspot Radar Pins */}
-              {HOTSPOTS.map((spot) => {
-                const isActive = activeId === spot.id;
-                return (
-                  <button
-                    key={spot.id}
-                    onClick={() => setActiveId(spot.id)}
-                    style={{ top: spot.top, left: spot.left }}
-                    className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 group/pin transition-transform duration-300 ${
-                      isActive ? 'scale-125' : 'hover:scale-110'
-                    }`}
-                    aria-label={`Inspect ${spot.name}`}
-                  >
-                    {/* Outer animated radar ring */}
-                    <span className="absolute -inset-2 rounded-full bg-[#2447E8]/50 animate-ping opacity-75" />
-                    
-                    {/* Inner glowing core */}
-                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center backdrop-blur-md shadow-lg transition-colors ${
-                      isActive
-                        ? 'bg-[#2447E8] border-white text-white'
-                        : 'bg-black/60 border-[#2447E8] text-[#2447E8] hover:bg-[#2447E8] hover:text-white'
-                    }`}>
-                      <Plus className={`w-3.5 h-3.5 transition-transform duration-300 ${isActive ? 'rotate-45' : 'group-hover/pin:rotate-90'}`} />
-                    </div>
-                  </button>
-                );
-              })}
-
-              {/* Active Hotspot Floating Glassmorphism Drawer */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeItem.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute bottom-3 left-3 right-3 z-30 p-3 sm:p-4 rounded-xl bg-black/80 backdrop-blur-xl border border-white/20 shadow-2xl flex items-center justify-between gap-3"
+                <button
+                  type="button"
+                  onClick={() => setVideoModalOpen(true)}
+                  className="inline-flex items-center gap-3 text-sm font-bold text-[#111111] hover:text-[#2447E8] transition-colors group cursor-pointer"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-12 h-12 rounded-lg overflow-hidden bg-white/10 shrink-0 border border-white/15">
-                      <img
-                        src={activeItem.image}
-                        alt={activeItem.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#6584FF] font-bold block truncate">
-                        {activeItem.category}
-                      </span>
-                      <h4 className="text-xs sm:text-sm font-bold text-white truncate">
-                        {activeItem.name}
-                      </h4>
-                      <p className="text-[11px] text-[#9EA3AE] truncate hidden sm:block">
-                        {activeItem.tagline}
-                      </p>
-                    </div>
-                  </div>
+                  <span className="w-10 h-10 rounded-full bg-[#FFFFFF] border border-[#E2E4E9] shadow-sm flex items-center justify-center text-[#111111] group-hover:scale-105 group-hover:border-[#2447E8] transition-all">
+                    <Play className="w-3.5 h-3.5 fill-[#111111] ml-0.5 group-hover:fill-[#2447E8] transition-colors" />
+                  </span>
+                  <span>Watch Video</span>
+                </button>
+              </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="font-mono text-sm sm:text-base font-black text-white">
-                      {activeItem.price}
-                    </span>
-                    <Link
-                      to={`/object/product/${activeItem.slug}`}
-                      className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white hover:bg-[#2447E8] text-[#111215] hover:text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1 shadow-md shrink-0"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">Inspect</span>
-                    </Link>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+              {/* 50K+ Happy Customers Floating Glass Pill */}
+              <div className="inline-flex items-center gap-3.5 p-2 pr-5 rounded-2xl bg-[#FFFFFF]/90 backdrop-blur-md border border-[#E5E5E0] shadow-md w-fit">
+                <div className="flex -space-x-2">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+                    alt="Customer avatar"
+                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
+                    alt="Customer avatar"
+                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                  />
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
+                    alt="Customer avatar"
+                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                  />
+                </div>
+                <div>
+                  <span className="font-extrabold text-[#111111] text-xs block leading-tight">50K+</span>
+                  <span className="text-[11px] text-[#777872] block leading-tight">Happy Customers</span>
+                </div>
+              </div>
+
             </div>
 
-            {/* Bottom Quick Switcher Pills */}
-            <div className="mt-4 pt-3 flex items-center justify-between gap-2 overflow-x-auto">
-              <div className="flex items-center gap-2">
-                {HOTSPOTS.map((h) => (
-                  <button
-                    key={h.id}
-                    onClick={() => setActiveId(h.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 whitespace-nowrap ${
-                      activeId === h.id
-                        ? 'bg-[#2447E8] text-white font-bold shadow-md'
-                        : 'bg-white/5 hover:bg-white/10 text-[#9EA3AE] border border-white/5'
-                    }`}
-                  >
-                    <span>{h.chipLabel}</span>
-                  </button>
-                ))}
+            {/* 2. Right Column: 3D Architectural Chair Stage (Exactly Matching User Mockup) */}
+            <div className="lg:col-span-7 relative flex items-center justify-center">
+              
+              {/* Blue 4-Point Sparkle Star floating in air */}
+              <div className="absolute top-2 left-6 lg:left-12 z-20 pointer-events-none">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#2447E8] animate-pulse">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor"/>
+                </svg>
               </div>
-              <span className="text-[11px] font-mono text-[#686E7D] hidden xl:inline">
-                Tap pins on image
-              </span>
+
+              {/* 3D Visual Stage Artwork */}
+              <div className="relative w-full max-w-[620px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E5E0]/60 group">
+                <img
+                  src="/images/object-hero-stage.jpg"
+                  alt="OBJECT & FORM Architectural Living Studio with Royal Cobalt Armchair"
+                  className="w-full h-auto object-cover transform scale-[1.38] translate-x-[15%] translate-y-[2%] transition-transform duration-700 group-hover:scale-[1.42]"
+                />
+
+                {/* Floating Pebble Lamp Card (Top Right) */}
+                <Link
+                  to="/object/product/pebble-ceramic-ambient-lamp"
+                  className="absolute top-5 right-5 sm:top-6 sm:right-8 z-30 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 pr-3.5 sm:pr-4 rounded-2xl border border-[#E5E5E0] shadow-xl flex items-center gap-3 hover:shadow-2xl hover:border-[#2447E8] transition-all group/card"
+                >
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-[#F2F2EE] shrink-0 border border-[#E5E5E0]">
+                    <img
+                      src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=200&q=80"
+                      alt="Pebble Lamp"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#111111] group-hover/card:text-[#2447E8] transition-colors">
+                      Pebble Lamp
+                    </h4>
+                    <span className="font-mono text-[11px] font-bold text-[#666666]">
+                      ₹3,499
+                    </span>
+                  </div>
+                  <div className="w-6 h-6 rounded-full bg-[#F4F4F6] group-hover/card:bg-[#2447E8] group-hover/card:text-white text-[#111111] flex items-center justify-center transition-colors ml-1">
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
+                </Link>
+
+                {/* Vertical Slider Pagination Controls (Right Side) */}
+                <div className="absolute right-4 sm:right-6 bottom-16 sm:bottom-20 z-30 flex flex-col items-center gap-2 bg-white/90 backdrop-blur-md py-3 px-2 rounded-full border border-[#E5E5E0] shadow-lg">
+                  <div className="text-center font-mono">
+                    <span className="font-extrabold text-xs text-[#111111] block">
+                      {String(currentSlide).padStart(2, '0')}
+                    </span>
+                    <span className="text-[10px] text-[#888888] block">/ 04</span>
+                  </div>
+                  
+                  <button
+                    type="button"
+                    onClick={handlePrevSlide}
+                    aria-label="Previous Slide"
+                    className="w-6 h-6 rounded-full bg-[#F4F4F6] hover:bg-[#2447E8] hover:text-white text-[#111111] flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <ChevronUp className="w-3.5 h-3.5" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleNextSlide}
+                    aria-label="Next Slide"
+                    className="w-6 h-6 rounded-full bg-[#F4F4F6] hover:bg-[#2447E8] hover:text-white text-[#111111] flex items-center justify-center transition-colors cursor-pointer"
+                  >
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+              </div>
+
             </div>
 
           </div>
 
         </div>
 
-      </div>
+        {/* 3. Bottom Features & Guarantees Strip (Exact Mockup Layout) */}
+        <div className="relative border-t border-[#EAEAE6] bg-[#FFFFFF] overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 items-center">
+              
+              {/* Feature 1: Free Shipping */}
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#F7F7F4] border border-[#E5E5E0] flex items-center justify-center text-[#111111] shrink-0">
+                  <Truck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] leading-tight">
+                    Free Shipping
+                  </h4>
+                  <p className="text-[11px] text-[#777872] mt-0.5">
+                    On Orders Above ₹2,499
+                  </p>
+                </div>
+              </div>
 
-    </section>
+              {/* Feature 2: Secure Payments */}
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#F7F7F4] border border-[#E5E5E0] flex items-center justify-center text-[#111111] shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] leading-tight">
+                    Secure Payments
+                  </h4>
+                  <p className="text-[11px] text-[#777872] mt-0.5">
+                    100% Safe & Encrypted
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 3: Easy Returns */}
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#F7F7F4] border border-[#E5E5E0] flex items-center justify-center text-[#111111] shrink-0">
+                  <RotateCcw className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] leading-tight">
+                    Easy Returns
+                  </h4>
+                  <p className="text-[11px] text-[#777872] mt-0.5">
+                    Within 7 Days
+                  </p>
+                </div>
+              </div>
+
+              {/* Feature 4: Dedicated Support */}
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-[#F7F7F4] border border-[#E5E5E0] flex items-center justify-center text-[#111111] shrink-0">
+                  <Headphones className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#111111] leading-tight">
+                    Dedicated Support
+                  </h4>
+                  <p className="text-[11px] text-[#777872] mt-0.5">
+                    Always Here to Help
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Bottom Right Decorative Concentric Blue Arc Accent */}
+          <div className="absolute -bottom-16 -right-16 w-44 h-44 rounded-full border-[18px] border-[#2447E8] opacity-90 pointer-events-none hidden md:block" />
+          <div className="absolute -bottom-24 -right-24 w-60 h-60 rounded-full border-[2px] border-[#2447E8]/30 pointer-events-none hidden md:block" />
+        </div>
+
+      </section>
+
+      {/* Video Modal (when "Watch Video" is clicked) */}
+      <AnimatePresence>
+        {videoModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            onClick={() => setVideoModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-video flex flex-col justify-center items-center text-white"
+            >
+              <button
+                type="button"
+                onClick={() => setVideoModalOpen(false)}
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/20 hover:bg-white text-white hover:text-black flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close video"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="text-center p-8">
+                <div className="w-16 h-16 rounded-full bg-[#2447E8] flex items-center justify-center mx-auto mb-4 animate-pulse">
+                  <Play className="w-6 h-6 fill-white ml-1" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">OBJECT & FORM: Studio Craft Film</h3>
+                <p className="text-sm text-gray-300 max-w-md mx-auto">
+                  Exploring the architectural journey from Kyoto ceramic studios to Jaipur duck canvas looms.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
