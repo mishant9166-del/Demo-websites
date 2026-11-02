@@ -155,18 +155,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   }
 
   /* -------------------------------------------------------------------------- */
-  /* Modern Luxury Card Frame (Grid & Carousel Mode)                            */
+  /* Modern Full-Bleed Card Frame (Complete image without white upper/side margins)*/
   /* -------------------------------------------------------------------------- */
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative flex flex-col justify-between bg-white border border-[#EAEAE6] hover:border-[#2447E8]/40 p-3 sm:p-3.5 rounded-3xl transition-all duration-500 ease-out shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(36,71,232,0.12)] hover:-translate-y-2 ${className}`}
+      className={`group relative flex flex-col justify-between bg-white border border-[#EAEAE6] hover:border-[#2447E8]/40 rounded-3xl overflow-hidden transition-all duration-500 ease-out shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_45px_rgba(36,71,232,0.12)] hover:-translate-y-2 ${className}`}
     >
-      {/* 1. Pedestal Gallery Inset Image Stage */}
+      {/* 1. Complete Full-Bleed Upper Stage (no top, left, or right padding) */}
       <Link
         to={`/object/product/${product.slug}`}
-        className="relative aspect-square w-full bg-gradient-to-b from-[#F9F9F6] via-[#F2F2ED] to-[#EAEAE5] rounded-2xl overflow-hidden block"
+        className="relative aspect-square w-full bg-gradient-to-b from-[#F9F9F6] via-[#F2F2ED] to-[#EAEAE5] overflow-hidden block"
       >
         {/* Primary and secondary hover image */}
         <img
@@ -179,9 +179,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
         {/* Floating Badges (Top Left) */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10">
+        <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10">
           {badgeLabel ? (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#18181B] text-white text-[9px] font-mono font-bold tracking-wider uppercase shadow-md backdrop-blur-md">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#18181B]/90 text-white text-[9px] font-mono font-bold tracking-wider uppercase shadow-md backdrop-blur-md">
               <Sparkles className="w-2.5 h-2.5 text-[#2447E8]" />
               {badgeLabel}
             </span>
@@ -207,17 +207,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           type="button"
           onClick={handleWishlistToggle}
           aria-label={isFavorited ? 'Remove from wishlist' : 'Add to wishlist'}
-          className={`absolute top-2.5 right-2.5 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 z-10 ${
+          className={`absolute top-3.5 right-3.5 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 z-10 ${
             isFavorited
               ? 'bg-white text-[#FF704F] shadow-md scale-105'
-              : 'bg-white/85 backdrop-blur-md text-[#777872] hover:text-[#FF704F] hover:bg-white hover:scale-110 shadow-xs'
+              : 'bg-white/90 backdrop-blur-md text-[#777872] hover:text-[#FF704F] hover:bg-white hover:scale-110 shadow-xs'
           }`}
         >
           <Heart className={`w-3.5 h-3.5 transition-transform duration-200 ${isFavorited ? 'fill-[#FF704F] scale-110' : ''}`} />
         </button>
 
         {/* Quick Add Floating Pill (Bottom Center) */}
-        <div className="absolute inset-x-3 bottom-3 z-10 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
+        <div className="absolute inset-x-3.5 bottom-3.5 z-10 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out">
           <button
             type="button"
             onClick={handleQuickAdd}
@@ -242,11 +242,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </Link>
 
-      {/* 2. Product Metadata Section */}
-      <div className="pt-3 px-1 flex-1 flex flex-col justify-between">
+      {/* 2. Product Metadata Section (Bottom White Space) */}
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between bg-white">
         <div>
           {/* Micro Category & Rating */}
-          <div className="flex items-center justify-between text-[10px] font-mono tracking-widest uppercase mb-1">
+          <div className="flex items-center justify-between text-[10px] font-mono tracking-widest uppercase mb-1.5">
             <span className="font-bold text-[#2447E8] truncate max-w-[170px]">
               {product.categoryLabel}
             </span>
@@ -258,19 +258,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Product Name */}
           <Link to={`/object/product/${product.slug}`} className="block">
-            <h3 className="text-sm font-bold text-[#18181B] group-hover:text-[#2447E8] transition-colors leading-snug line-clamp-1 mb-1">
+            <h3 className="text-sm sm:text-base font-bold text-[#18181B] group-hover:text-[#2447E8] transition-colors leading-snug line-clamp-1 mb-1">
               {product.name}
             </h3>
           </Link>
 
           {/* Tagline / Materials Snippet */}
-          <p className="text-[11px] text-[#777872] line-clamp-1 font-light mb-2.5">
+          <p className="text-[11px] text-[#777872] line-clamp-1 font-light mb-3">
             {product.tagline || product.materials?.[0] || 'Hand-finished in studio batches'}
           </p>
         </div>
 
         {/* 3. Bottom Price & Swatches Row */}
-        <div className="pt-2 flex items-center justify-between border-t border-[#F0F0EB]">
+        <div className="pt-2.5 flex items-center justify-between border-t border-[#F0F0EB]">
           <PriceDisplay
             priceINR={product.priceINR}
             originalPriceINR={product.originalPriceINR}
@@ -286,7 +286,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   type="button"
                   key={c.id}
                   onClick={(e) => handleColorSelect(e, idx)}
-                  className={`w-3 h-3 rounded-full border border-black/15 transition-all cursor-pointer ${
+                  className={`w-3.5 h-3.5 rounded-full border border-black/15 transition-all cursor-pointer ${
                     selectedVariantIndex === idx
                       ? 'ring-2 ring-[#2447E8] ring-offset-1 scale-110'
                       : 'hover:scale-125'
