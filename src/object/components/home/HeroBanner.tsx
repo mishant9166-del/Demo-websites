@@ -115,24 +115,24 @@ export const HeroBanner: React.FC = () => {
             <div className="lg:col-span-7 relative flex items-center justify-center">
               
               {/* Blue 4-Point Sparkle Star floating in air */}
-              <div className="absolute top-2 left-6 lg:left-12 z-20 pointer-events-none">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#2447E8] animate-pulse">
+              <div className="absolute top-2 left-4 lg:left-8 z-20 pointer-events-none">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-[#2447E8] animate-pulse">
                   <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" fill="currentColor"/>
                 </svg>
               </div>
 
               {/* 3D Visual Stage Artwork */}
-              <div className="relative w-full max-w-[620px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E5E0]/60 group">
+              <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-[#E5E5E0]/70 bg-[#F5F6F8] group">
                 <img
-                  src="/images/object-hero-stage.jpg"
+                  src="/images/blue-chair-stage.jpg"
                   alt="OBJECT & FORM Architectural Living Studio with Royal Cobalt Armchair"
-                  className="w-full h-auto object-cover transform scale-[1.38] translate-x-[15%] translate-y-[2%] transition-transform duration-700 group-hover:scale-[1.42]"
+                  className="w-full h-[360px] sm:h-[420px] lg:h-[460px] object-cover object-center transition-transform duration-700 group-hover:scale-103"
                 />
 
                 {/* Floating Pebble Lamp Card (Top Right) */}
                 <Link
                   to="/object/product/pebble-ceramic-ambient-lamp"
-                  className="absolute top-5 right-5 sm:top-6 sm:right-8 z-30 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 pr-3.5 sm:pr-4 rounded-2xl border border-[#E5E5E0] shadow-xl flex items-center gap-3 hover:shadow-2xl hover:border-[#2447E8] transition-all group/card"
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 pr-3.5 sm:pr-4 rounded-2xl border border-[#E5E5E0] shadow-xl flex items-center gap-3 hover:shadow-2xl hover:border-[#2447E8] transition-all group/card"
                 >
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-[#F2F2EE] shrink-0 border border-[#E5E5E0]">
                     <img
@@ -155,7 +155,7 @@ export const HeroBanner: React.FC = () => {
                 </Link>
 
                 {/* Vertical Slider Pagination Controls (Right Side) */}
-                <div className="absolute right-4 sm:right-6 bottom-16 sm:bottom-20 z-30 flex flex-col items-center gap-2 bg-white/90 backdrop-blur-md py-3 px-2 rounded-full border border-[#E5E5E0] shadow-lg">
+                <div className="absolute right-3 sm:right-5 bottom-12 sm:bottom-16 z-30 flex flex-col items-center gap-2 bg-white/95 backdrop-blur-md py-3 px-2 rounded-full border border-[#E5E5E0] shadow-lg">
                   <div className="text-center font-mono">
                     <span className="font-extrabold text-xs text-[#111111] block">
                       {String(currentSlide).padStart(2, '0')}
