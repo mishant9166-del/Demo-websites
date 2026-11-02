@@ -36,8 +36,6 @@ export const HomePage: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [scrollProgress, setScrollProgress] = useState(10);
-  const [currentIndex, setCurrentIndex] = useState(1);
 
   const updateScrollState = useCallback(() => {
     if (!carouselRef.current) return;
@@ -46,18 +44,7 @@ export const HomePage: React.FC = () => {
     // Allow a small tolerance margin for precision
     setCanScrollLeft(scrollLeft > 20);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 20);
-
-    const maxScroll = scrollWidth - clientWidth;
-    const progress = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
-    setScrollProgress(progress);
-
-    const cardWidth = 330;
-    const index = Math.min(
-      newArrivals.length,
-      Math.max(1, Math.round(scrollLeft / cardWidth) + 1)
-    );
-    setCurrentIndex(index);
-  }, [newArrivals.length]);
+  }, []);
 
   useEffect(() => {
     updateScrollState();
@@ -173,36 +160,6 @@ export const HomePage: React.FC = () => {
                 <ChevronRight className="w-6 h-6 -mr-0.5" />
               </button>
             )}
-          </div>
-
-          {/* Bottom Progress Bar & Item Tracker */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#F0F0EB]">
-            <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
-              <div className="w-36 sm:w-56 h-1.5 bg-[#EAEAE6] rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#2447E8] rounded-full transition-all duration-300"
-                  style={{ width: `${Math.max(12, scrollProgress)}%` }}
-                />
-              </div>
-              <span className="text-xs font-mono text-[#777872] tracking-wider font-semibold">
-                Object {currentIndex} of {newArrivals.length}
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-              <span className="text-xs text-[#777872] font-mono flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#2447E8]/60 animate-ping" />
-                <span>Swipe left / right or use middle arrows</span>
-              </span>
-
-              <Link
-                to="/object/shop?filter=new"
-                className="sm:hidden inline-flex items-center gap-1 text-xs uppercase font-bold text-[#2447E8] font-mono"
-              >
-                <span>View All</span>
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
           </div>
         </div>
       </section>
